@@ -9,25 +9,34 @@
 <body>
     <h1>俄罗斯方块嘻嘻</h1>
     <div class="game-container">
+        <!-- 游戏画布 -->
         <div class="game-area">
             <canvas id="tetris" width="300" height="600"></canvas>
         </div>
+        <!-- 信息栏 -->
         <div class="info">
-            <p>得分: <span id="score">0</span></p>
-            <p>下一个方块:</p>
-            <canvas id="next" width="120" height="120"></canvas>
-            <div class="controls">
+            <!-- 左上：分数 -->
+            <div class="score-area">
+                <p>得分: <span id="score">0</span></p>
+            </div>
+            <!-- 左下：下一个方块 -->
+            <div class="next-area">
+                <p>下一个方块:</p>
+                <canvas id="next" width="120" height="120"></canvas>
+            </div>
+            <!-- 右侧：操作说明 -->
+            <div class="controls-area">
                 <h3>操作说明</h3>
+                <p>↑ 旋转</p>
                 <p>← 左移</p>
                 <p>→ 右移</p>
                 <p>↓ 加速下落</p>
-                <p>↑ 旋转</p>
                 <p>空格键 快速下落</p>
                 <p>Shift 暂停</p>
             </div>
         </div>
     </div>
-    <!-- 添加控制按钮 -->
+    <!-- 控制按钮 -->
     <div class="mobile-controls">
         <button id="left">←</button>
         <button id="right">→</button>
