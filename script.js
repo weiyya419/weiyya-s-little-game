@@ -49,6 +49,9 @@ let nextPiece;
 // 得分
 let score = 0;
 
+// 游戏状态
+let isPaused = false;
+
 // 初始化游戏
 function init() {
     currentPiece = createPiece();
@@ -223,18 +226,48 @@ function rotatePiece() {
     }
 }
 
-// 键盘控制
+// 暂停/恢复游戏
+function togglePause() {
+    isPaused = !isPaused;
+    pauseButton.textContent = isPaused ? "恢复" : "暂停";
+    if (!isPaused) {
+        gameLoop();
+    }
+}
+
+// 获取控制按钮
+const leftButton = document.getElementById("left");
+const rightButton = document.getElementById("right");
+const downButton = document.getElementById("down");
+const rotateButton = document.getElementById("rotate");
+const dropButton = document.getElementById("drop");
+const pauseButton = document.getElementById("pause");
+
+// 为按钮添加事件监听器
+leftButton.addEventListener("click", () => movePiece(-1, 0));
+rightButton.addEventListener("click", () => movePiece(1, 0));
+downButton.addEventListener("click", () => movePiece(0, 1));
+rotateButton.addEventListener("click", rotatePiece);
+dropButton.addEventListener("click", dropPiece);
+pauseButton.addEventListener("click", togglePause);
+
+// 键盘事件监听器
 document.addEventListener("keydown", event => {
-    if (event.key === "ArrowLeft") {
-        movePiece(-1, 0);
-    } else if (event.key === "ArrowRight") {
-        movePiece(1, 0);
-    } else if (event.key === "ArrowDown") {
-        movePiece(0, 1);
-    } else if (event.key === "ArrowUp") {
-        rotatePiece();
-    } else if (event.key === " ") { // 空格键快速下落
-        dropPiece();
+    if (event.key === "Shift") {
+        togglePause();
+    }
+    if (!isPaused) {
+        if (event.key === "ArrowLeft") {
+            movePiece(-1, 0);
+        } else if (event.key === "ArrowRight") {
+            movePiece(1, 0);
+        } else if (event.key === "ArrowDown") {
+            movePiece(0, 1);
+        } else if (event.key === "ArrowUp") {
+            rotatePiece();
+        } else if (event.key === " ") {
+            dropPiece();
+        }
     }
     drawBoard();
     drawGhostPiece();
@@ -243,11 +276,13 @@ document.addEventListener("keydown", event => {
 
 // 游戏循环
 function gameLoop() {
-    movePiece(0, 1);
-    drawBoard();
-    drawGhostPiece();
-    drawPiece();
-    setTimeout(gameLoop, 1000);
+    if (!isPaused) {
+        movePiece(0, 1);
+        drawBoard();
+        drawGhostPiece();
+        drawPiece();
+        setTimeout(gameLoop, 1000);
+    }
 }
 
 // 启动游戏
