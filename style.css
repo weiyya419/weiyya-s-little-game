@@ -4,7 +4,7 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* 防止页面滚动 */
+    overflow: auto; /* 防止页面滚动 */
 }
 
 h1 {
@@ -12,15 +12,17 @@ h1 {
     font-size: 24px; /* 减小标题字体大小 */
 }
 
+/* 游戏容器 */
 .game-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     margin-top: 20px;
-    flex-wrap: wrap; /* 允许内容换行 */
-    gap: 20px; /* 增加容器之间的间距 */
+    gap: 10px; /* 缩小容器之间的间距 */
+    padding: 0 10px; /* 增加左右内边距 */
 }
 
+/* 游戏画布区域 */
 .game-area {
     display: flex;
     justify-content: center;
@@ -34,30 +36,56 @@ canvas {
     height: auto; /* 高度自适应 */
 }
 
+/* 信息栏 */
 .info {
-    text-align: left;
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+    gap: 10px; /* 缩小模块之间的间距 */
     max-width: 100%; /* 信息区域宽度不超过屏幕宽度 */
+}
+
+/* 分数区域 */
+.score-area {
     background-color: #fff;
     padding: 10px;
     border: 2px solid #333;
     border-radius: 5px;
+    text-align: left;
+}
+
+/* 下一个方块区域 */
+.next-area {
+    background-color: #fff;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    text-align: left;
 }
 
 #next {
     border: 2px solid #333;
     background-color: #000;
-    margin-bottom: 20px;
+    margin-top: 10px;
     max-width: 100%; /* 下一个方块画布宽度不超过屏幕宽度 */
     height: auto; /* 高度自适应 */
 }
 
-.controls h3 {
+/* 操作说明区域 */
+.controls-area {
+    background-color: #fff;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.controls-area h3 {
     margin-top: 0;
     font-size: 18px;
     color: #333;
 }
 
-.controls p {
+.controls-area p {
     margin: 5px 0;
     font-size: 14px;
     color: #555;
@@ -71,6 +99,11 @@ canvas {
     margin-top: 20px;
     padding: 10px;
     width: 100%; /* 按钮区域宽度占满屏幕 */
+    position: fixed; /* 固定在底部 */
+    bottom: 0; /* 距离底部为0 */
+    left: 0; /* 距离左侧为0 */
+    background-color: #fff; /* 按钮区域背景色 */
+    border-top: 2px solid #333; /* 顶部边框 */
 }
 
 .mobile-controls button {
@@ -95,12 +128,11 @@ canvas {
     }
 
     .game-container {
-        flex-direction: row; /* 垂直排列游戏区域和信息区域 */
+        flex-direction: column; /* 垂直排列游戏区域和信息区域 */
         align-items: center;
     }
 
     .info {
-        margin-top: 20px;
         width: 90%; /* 信息区域宽度占屏幕宽度的90% */
     }
 
