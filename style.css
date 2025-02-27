@@ -95,7 +95,7 @@ canvas {
     }
 
     .game-container {
-        flex-direction: column; /* 垂直排列游戏区域和信息区域 */
+        flex-direction: row; /* 垂直排列游戏区域和信息区域 */
         align-items: center;
     }
 
