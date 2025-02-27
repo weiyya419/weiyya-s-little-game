@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄罗斯方块嘻嘻</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>俄罗斯方块嘻嘻</h1>
+    <div class="game-container">
+        <canvas id="tetris" width="300" height="600"></canvas>
+        <div class="info">
+            <p>得分: <span id="score">0</span></p>
+            <p>下一个方块:</p>
+            <canvas id="next" width="120" height="120"></canvas>
+            <div class="controls">
+                <h3>操作说明</h3>
+                <p>← 左移</p>
+                <p>→ 右移</p>
+                <p>↓ 加速下落</p>
+                <p>↑ 旋转</p>
+                <p>空格键 快速下落</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
