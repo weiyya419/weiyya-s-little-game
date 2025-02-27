@@ -205,6 +205,9 @@ function movePiece(dx, dy) {
             freeze();
         }
     }
+    drawBoard();
+    drawGhostPiece();
+    drawPiece();
 }
 
 // 快速下落
@@ -224,6 +227,9 @@ function rotatePiece() {
     if (collide(currentPiece.shape, currentPiece.x, currentPiece.y)) {
         currentPiece.shape = prevShape;
     }
+    drawBoard();
+    drawGhostPiece();
+    drawPiece();
 }
 
 // 暂停/恢复游戏
@@ -231,7 +237,7 @@ function togglePause() {
     isPaused = !isPaused;
     pauseButton.textContent = isPaused ? "恢复" : "暂停";
     if (!isPaused) {
-        gameLoop();
+        gameLoop(); // 恢复游戏循环
     }
 }
 
@@ -269,10 +275,9 @@ document.addEventListener("keydown", event => {
             dropPiece();
         }
     }
-    drawBoard();
-    drawGhostPiece();
-    drawPiece();
 });
+
+let fallInterval = 1000; // 初始下落间隔时间
 
 // 游戏循环
 function gameLoop() {
@@ -281,10 +286,20 @@ function gameLoop() {
         drawBoard();
         drawGhostPiece();
         drawPiece();
-        setTimeout(gameLoop, 1000);
+        setTimeout(gameLoop, fallInterval); // 使用变量控制下落速度
     }
 }
 
+// 根据得分调整下落速度
+function updateScore(points) {
+    score += points;
+    scoreDisplay.textContent = score;
+
+    // 每得 100 分，加快下落速度
+    if (score % 100 === 0 && fallInterval > 200) {
+        fallInterval -= 100; // 每次减少 100 毫秒
+    }
+}
 // 启动游戏
 init();
 gameLoop();
