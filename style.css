@@ -18,6 +18,13 @@ h1 {
     align-items: flex-start;
     margin-top: 20px;
     flex-wrap: wrap; /* 允许内容换行 */
+    gap: 20px; /* 增加容器之间的间距 */
+}
+
+.game-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 canvas {
@@ -28,9 +35,12 @@ canvas {
 }
 
 .info {
-    margin-left: 20px;
     text-align: left;
     max-width: 100%; /* 信息区域宽度不超过屏幕宽度 */
+    background-color: #fff;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 5px;
 }
 
 #next {
@@ -39,15 +49,6 @@ canvas {
     margin-bottom: 20px;
     max-width: 100%; /* 下一个方块画布宽度不超过屏幕宽度 */
     height: auto; /* 高度自适应 */
-}
-
-.controls {
-    background-color: #fff;
-    padding: 10px;
-    border: 2px solid #333;
-    border-radius: 5px;
-    text-align: left;
-    max-width: 100%; /* 操作说明区域宽度不超过屏幕宽度 */
 }
 
 .controls h3 {
@@ -99,8 +100,8 @@ canvas {
     }
 
     .info {
-        margin-left: 0;
         margin-top: 20px;
+        width: 90%; /* 信息区域宽度占屏幕宽度的90% */
     }
 
     #tetris {
